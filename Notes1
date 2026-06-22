@@ -1,0 +1,16 @@
+POWER BI DESKTOP: 3 Layers are there
+Data layer: Local copy of data inside powerbi
+Model layer
+Visual Layer
+IMPORT: Data is copied from the source and stored locally inside the powerbi files, then used for visuals.
+Load: File connection : Files can only be imported, no other connection types are available like live connection to excel file.
+Import limitation: If the source file changes, powerbi does not automatically changes data
+REFRESH: This will refresh and new data will be loaded 
+Import will be very fast in performance, as data is sotred in column, compressed as well.
+
+DIRECT QUERY: Data stays in the source system and powerbi sends quries to it whenever visuals need data. Permanent request. visual layer goes to model layer to fetch data
+When conecting to database, power offer 2 options. Import, DirectQuery
+IMPORT mode is one way decision, you cannot later switch to directquery.
+DIRECT QUERY allows switching to import later, LOAD will just import structure(metadata) to powerbi.
+Limitation of directquery: In table view, you cannot preview data as data is not loaded. Many DAX functions, calculated col and modeling features are unavailable
+WHY? POWERBI ONLY READS DATA, IT NEVER MANIPULATES DATA IN THE SOURCE SYSTEM
