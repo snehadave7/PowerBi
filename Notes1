@@ -14,3 +14,33 @@ IMPORT mode is one way decision, you cannot later switch to directquery.
 DIRECT QUERY allows switching to import later, LOAD will just import structure(metadata) to powerbi.
 Limitation of directquery: In table view, you cannot preview data as data is not loaded. Many DAX functions, calculated col and modeling features are unavailable
 WHY? POWERBI ONLY READS DATA, IT NEVER MANIPULATES DATA IN THE SOURCE SYSTEM
+
+Dual connection mode: Powerbi decides on its own if import or direct query should be used.
+
+Live connection: Powerbi desktop connects directly to a shared semantic model in the powerbi service.
+PowerBi Desktop(Build)----Publish----> PowerBi Service------LiveConnection------>PowerBi Desktop
+If we have many files of same structure, we use folder option in GetDate
+FolderDataPreview: It lists the file and binary represents the data insde each file.
+Now beside load, Combine option is ther which will combine all files into one table
+Publish: Share data+model+visual
+
+Now as a buisness user if i want to work, Use already exisiting data.
+Get Data---> More--->Microsoft Fabric----> PowerBi Semantic Models(here u can see the published items)
+Once published the data and model stays in service not desktop.
+Live Connection: Table view is disabled, Data model is fixed. You can only build reports
+Now publish will only share visuals(reports)
+
+.Extension types
+When you try to save your work in PowerBi, you get a choice
+Want to save you data in the file?
+YES-------> Data+Model+Visual  .PBIX FILE
+NO--------> Model+Visual  .PBIT FILE
+PBIP FILE: PowerBi project file format that saves your powerbi work in multiple files for better teamwork and change management
+-> For big projects, multiple people working together, helpful in CI/CD deployment
+-> It creates 2 folder report and semantic and inside that multiple files
+
+POWER QUERY:It is the data preparation and ETL engine in powerbi used to connect, clean and transform data before analysis.
+SOURCE----->POWER QUERY----->MODELING----->DAX----->VISUALS----->SHARE
+
+
+
