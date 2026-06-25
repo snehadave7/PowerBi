@@ -42,5 +42,41 @@ PBIP FILE: PowerBi project file format that saves your powerbi work in multiple 
 POWER QUERY:It is the data preparation and ETL engine in powerbi used to connect, clean and transform data before analysis.
 SOURCE----->POWER QUERY----->MODELING----->DAX----->VISUALS----->SHARE
 
+THE ORDER OF STEPS IS VERY IMPORTANT IN POWER QUERY TRANSORM
+Process Steps:
+1) CONNECT DATA (SOURCE,PROMOTED HEADER, CHANGED TYPE COMES BY DEFAULT) Check if header is correctly mapped. If u see column1,column2... then header are not promoted as first row. Changed type is power query automatically maps the type of data 
+2) FILTER DATA
+-> Remove unnecessary columns
+-> Remove blank rows
+-> Filter rows (Use filter to remove rows like u need to see only 2 years of data like this)
+3) DATA CLEANING
+-> Remove duplicates rows: group by primary key-> check for count>1 then we remove duplicate rows remove that step of group after checking the duplicate to go back
+-> for text: Trim,Case,Replace
+-> for number: Format,Round,Type
+-> for date: Format,Type
+-> handle missing values: NULL: unknown,missing,nothing, EMPTY STRING: text type but no value, WHITE SPACE: text type with space value
+4) DATA TRANSFORMATION
+-> Split column
+-> Merging columns
+-> Extract parts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
