@@ -1,82 +1,18 @@
-POWER BI DESKTOP: 3 Layers are there
-Data layer: Local copy of data inside powerbi
-Model layer
-Visual Layer
-IMPORT: Data is copied from the source and stored locally inside the powerbi files, then used for visuals.
-Load: File connection : Files can only be imported, no other connection types are available like live connection to excel file.
-Import limitation: If the source file changes, powerbi does not automatically changes data
-REFRESH: This will refresh and new data will be loaded 
-Import will be very fast in performance, as data is sotred in column, compressed as well.
+Merge VS Append Tables in Power Query
+Merge: Combine columns of table  (SQL JOINS)
+Append: If column are same combine rows  (SQL UNION)
 
-DIRECT QUERY: Data stays in the source system and powerbi sends quries to it whenever visuals need data. Permanent request. visual layer goes to model layer to fetch data
-When conecting to database, power offer 2 options. Import, DirectQuery
-IMPORT mode is one way decision, you cannot later switch to directquery.
-DIRECT QUERY allows switching to import later, LOAD will just import structure(metadata) to powerbi.
-Limitation of directquery: In table view, you cannot preview data as data is not loaded. Many DAX functions, calculated col and modeling features are unavailable
-WHY? POWERBI ONLY READS DATA, IT NEVER MANIPULATES DATA IN THE SOURCE SYSTEM
+Process steps: Connect Data-->Filter Data--> Clean Data--> Transform Data-->Combine Data-->clean Up
 
-Dual connection mode: Powerbi decides on its own if import or direct query should be used.
+PIVOT VS UNPIVOT IN POWER QUERY
+RESHAPING DATA: Changing the layout of the table without changing the meaning and the values of your data inside the table.
+Unpivot: Converting the table structure from human friendly to PowerBi friendly structure. Column to rows
+Pivot: Opposite of unpivot Rows to column
 
-Live connection: Powerbi desktop connects directly to a shared semantic model in the powerbi service.
-PowerBi Desktop(Build)----Publish----> PowerBi Service------LiveConnection------>PowerBi Desktop
-If we have many files of same structure, we use folder option in GetDate
-FolderDataPreview: It lists the file and binary represents the data insde each file.
-Now beside load, Combine option is ther which will combine all files into one table
-Publish: Share data+model+visual
+DATA MODELING
 
-Now as a buisness user if i want to work, Use already exisiting data.
-Get Data---> More--->Microsoft Fabric----> PowerBi Semantic Models(here u can see the published items)
-Once published the data and model stays in service not desktop.
-Live Connection: Table view is disabled, Data model is fixed. You can only build reports
-Now publish will only share visuals(reports)
+IN STAR SCHEMA, THE FILTER DIRECTION IS ALWAYS FROM DIMENSION TO THE CENTER(FACT_TABLE) OTHERWISE IT CREATES AMBIGUTY
 
-.Extension types
-When you try to save your work in PowerBi, you get a choice
-Want to save you data in the file?
-YES-------> Data+Model+Visual  .PBIX FILE
-NO--------> Model+Visual  .PBIT FILE
-PBIP FILE: PowerBi project file format that saves your powerbi work in multiple files for better teamwork and change management
--> For big projects, multiple people working together, helpful in CI/CD deployment
--> It creates 2 folder report and semantic and inside that multiple files
-
-POWER QUERY:It is the data preparation and ETL engine in powerbi used to connect, clean and transform data before analysis.
-SOURCE----->POWER QUERY----->MODELING----->DAX----->VISUALS----->SHARE
-
-THE ORDER OF STEPS IS VERY IMPORTANT IN POWER QUERY TRANSORM
-Process Steps:
-1) CONNECT DATA (SOURCE,PROMOTED HEADER, CHANGED TYPE COMES BY DEFAULT) Check if header is correctly mapped. If u see column1,column2... then header are not promoted as first row. Changed type is power query automatically maps the type of data 
-2) FILTER DATA
--> Remove unnecessary columns
--> Remove blank rows
--> Filter rows (Use filter to remove rows like u need to see only 2 years of data like this)
-3) DATA CLEANING
--> Remove duplicates rows: group by primary key-> check for count>1 then we remove duplicate rows remove that step of group after checking the duplicate to go back
--> for text: Trim,Case,Replace
--> for number: Format,Round,Type
--> for date: Format,Type
--> handle missing values: NULL: unknown,missing,nothing, EMPTY STRING: text type but no value, WHITE SPACE: text type with space value
-4) DATA TRANSFORMATION
--> Split column
--> Merging columns
--> Extract parts
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Active and Inactive relationship: Inactive relationship is one which cause loops, ambiguity between tables and it is not joining on key col just any col ehich has matching data like 2 table having same col eg city.
+We cannot use this inactive relationship. 
+USERELATIONSHIP(DAX): A DAX FUNCTION THAT TURNS ON AN INACTIVE RELATIONSHIP FOR ONE SPECIFIC CALCULATION.
