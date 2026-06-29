@@ -16,3 +16,7 @@ IN STAR SCHEMA, THE FILTER DIRECTION IS ALWAYS FROM DIMENSION TO THE CENTER(FACT
 Active and Inactive relationship: Inactive relationship is one which cause loops, ambiguity between tables and it is not joining on key col just any col ehich has matching data like 2 table having same col eg city.
 We cannot use this inactive relationship. 
 USERELATIONSHIP(DAX): A DAX FUNCTION THAT TURNS ON AN INACTIVE RELATIONSHIP FOR ONE SPECIFIC CALCULATION.
+
+Grain: The level of detail each row gives is the grain.
+
+PowerBI Row Level Security: Static RLs and Dynamic RLS
